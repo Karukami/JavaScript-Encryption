@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+	</head>
+	<body style="background-color: black; color: white; text-align: center">
+		<div class="container">
+			<div class="row">
+				<div class="col"></div>
+				<div class="col-10">
+					<p>Hello! This is an encryption tool</p>
+					<hr style="border: 1px solid white">
+					<label>Please enter the text you want to encode: </label>
+					<input type="text" class="form-control" id="input" placeholder="Ex: Cheeseburgers">
+					<br><button class="btn btn-primary" onclick="Encrypt()">Encrypt</button>
+					<br><hr style="border: 1px solid white">
+					<label>Encrypted: </label>
+					<input type="text" class="form-control" id="encrypted" disabled>
+					<br><label>Decrypted: </label>
+					<input type="text" class="form-control" id="decrypted" disabled>
+					<br><label>Post Decryption: </label>
+					<input type="text" class="form-control" id="postdecrypt" disabled>
+				</div>
+				<div class="col"></div>
+			</div>
+		</div>
+		<script>
+			function Encrypt() {
+				var myString = document.getElementById("input").value;
+				var myPassword = "password";
+				var encrypted = CryptoJS.AES.encrypt(myString, myPassword);
+				var decrypted = CryptoJS.AES.decrypt(encrypted, myPassword);
+				document.getElementById("encrypted").placeholder = encrypted;
+				document.getElementById("decrypted").placeholder = decrypted;
+				document.getElementById("postdecrypt").placeholder = decrypted.toString(CryptoJS.enc.Utf8);
+			}
+		</script>
+	</body>
+</html>
